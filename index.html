@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--<script src="sweepApp.js"></script>-->
+  <!--<script src="sweepCtrl.js"></script>-->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"> </script>
+<style>
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+}
+
+header, footer {
+    padding: 1em;
+    color: white;
+    background-color: darkgreen;
+    clear: left;
+    text-align: center;
+}
+
+nav {
+    float: left;
+    max-width: 160px;
+    margin: 0;
+    padding: 1em;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul a {
+    text-decoration: none;
+}
+
+article {
+    margin-left: 170px;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+   <h1>Dashboard</h1>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#">George</a></li>
+    <li><a href="#">Lydia</a></li>
+    <li><a href="#">Harry</a></li>
+  </ul>
+</nav>
+
+<article>
+  <h1>Tracker</h1>
+  <p></p>
+  <p></p>
+<div ng-app="sweepApp" ng-controller="harryCtrl">
+
+<h1>HARRY</h1>
+<p>Water Level: {{waterLevel}}</p>
+<p>Battery Level: {{batteryLevel}}</p>
+<p>Brushes Down: {{brushesDown}}</p>
+<p>System Fault Check: {{SystemFaultCheckOk}}</p>
+<button ng-click="systemCheck()" type="button">System Check</button>
+<p>{{check}}</p>
+
+</div>
+
+
+</article>
+
+<footer>Dash</footer>
+
+</div>
+<script>
+var app = angular.module('sweepApp', []);
+app.controller('harryCtrl', function($scope) {
+
+  $scope.waterLevel = 100;
+  $scope.batteryLevel = 40;
+  $scope.brushesDown = true;
+  $scope.SystemFaultCheckOk = true;
+  $scope.check ="click system check...";
+
+  $scope.systemCheck = function(){
+    if($scope.waterLevel > 10 && $scope.batteryLevel > 10 && $scope.SystemFaultCheckOk == true) {
+      $scope.check = "All systems OK";
+    }else{
+      $scope.check = "Check Levels!";
+    }
+  }
+
+
+});
+</script>
+</body>
+</html>
