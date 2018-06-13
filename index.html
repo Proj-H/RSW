@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 <head>
-  <!--<script src="sweepApp.js"></script>-->
-  <!--<script src="sweepCtrl.js"></script>-->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"> </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.18/angular-ui-router.js"></script>
+  <script src="app.js"></script>
+  <script src="appController.js"></script>
 <style>
 div.container {
     width: 100%;
@@ -52,9 +53,9 @@ article {
 
 <nav>
   <ul>
-    <li><a href="#">George</a></li>
-    <li><a href="#">Lydia</a></li>
-    <li><a href="#">Harry</a></li>
+    <li><a ui-sref="george">George</a></li>
+    <li><a ui-sref="lydia">Lydia</a></li>
+    <li><a ui-sref="harry">Harry</a></li>
   </ul>
 </nav>
 
@@ -62,16 +63,10 @@ article {
   <h1>Tracker</h1>
   <p></p>
   <p></p>
-<div ng-app="sweepApp" ng-controller="harryCtrl">
+<div ng-controller="appController">
+<div ui-view>
 
-<h1>HARRY</h1>
-<p>Water Level: {{waterLevel}}</p>
-<p>Battery Level: {{batteryLevel}}</p>
-<p>Brushes Down: {{brushesDown}}</p>
-<p>System Fault Check: {{SystemFaultCheckOk}}</p>
-<button ng-click="systemCheck()" type="button">System Check</button>
-<p>{{check}}</p>
-
+</div>
 </div>
 
 
@@ -80,13 +75,14 @@ article {
 <footer>Dash</footer>
 
 </div>
-<script>
+<!--<script>
 var app = angular.module('sweepApp', []);
 app.controller('harryCtrl', function($scope) {
 
   $scope.waterLevel = 100;
   $scope.batteryLevel = 40;
   $scope.brushesDown = true;
+  $scope.brushesInfo;
   $scope.SystemFaultCheckOk = true;
   $scope.check ="click system check...";
 
@@ -96,10 +92,19 @@ app.controller('harryCtrl', function($scope) {
     }else{
       $scope.check = "Check Levels!";
     }
-  }
+  };
+
+  $scope.brushes = function(){
+    if($scope.brushesDown == true){
+      $scope.brushesInfo = "Brushes are down and working";
+    }else{
+      $scope.brushesInfo = "Brushes are up no work taking place";
+    }
+    return $scope.brushesInfo;
+  };
 
 
 });
-</script>
+</script>-->
 </body>
 </html>
