@@ -1,7 +1,10 @@
-<h1>HARRY</h1>
-<p>Water Level: {{waterLevel}}</p>
-<p>Battery Level: {{batteryLevel}}</p>
-<p>Brushes Down: {{brushes()}}</p>
-<p>System Fault Check: {{SystemFaultCheckOk}}</p>
-<button ng-click="systemCheck()" type="button">System Check</button>
-<p>{{check}}</p>
+<div ng-repeat="sweep in harrySweeper">
+                <h1>{{ harrySweep.name }}</h1>
+                <p>Water Level: <progress max="100" value="{{ sweep.waterLevel }}"></progress> {{sweep.waterLevel}}%</p>
+                <p>Battery Level: <progress max="100" value="{{ sweep.batteryLevel }}"></progress> {{sweep.batteryLevel}}%</p>
+                <p>Brushes: <img src="{{brushesImage}}" /></p>
+                <p>System Check: <img src="{{systemCheckImage}}" /></p>
+                <button ng-click="systemCheck()" type="button">System Check</button>
+                <p>{{check}}</p>
+
+            </div>

@@ -1,4 +1,4 @@
-app.controller('appController', function($scope) {
+app.controller('appController', function($scope, $http) {
 
   $scope.waterLevel = 100;
   $scope.batteryLevel = 40;
@@ -6,6 +6,7 @@ app.controller('appController', function($scope) {
   $scope.brushesInfo;
   $scope.SystemFaultCheckOk = true;
   $scope.check ="click system check...";
+  $scope.harrySweepOverviewImage;
 
   $scope.systemCheck = function(){
     if($scope.waterLevel > 10 && $scope.batteryLevel > 10 && $scope.SystemFaultCheckOk == true) {
@@ -23,6 +24,21 @@ app.controller('appController', function($scope) {
     }
     return $scope.brushesInfo;
   };
+
+  var url = "harrySweeper.txt";
+
+  $http.get(url).then(function (response) {
+                $scope.harrySweeper = response.data;
+            });
+/*function to set the overview image for harry
+            function setHarryOverviewImage(){
+              if(harrySweeper.SystemFaultCheckOk == true){
+                var img = "RSW/img/swpgreen.png";
+              }else{
+                var img = "RSW/img/swpred.png";
+              }
+              return img;
+            };*/
 
 
 });
