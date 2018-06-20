@@ -1,74 +1,40 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.js"></script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="maps.css">
+<script
+  src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.18/angular-ui-router.js"></script>
-  <link rel="stylesheet" type="text/css" href="app.css"/>
-  <script src="app.js"></script>
-  <script src="appController.js"></script>
+<script
+  src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script type="text/javascript" src="maps.js"></script>
 </head>
 <body>
-
+  <header>
+     <h1>Tracker Dashboard</h1>
+  </header>
 <div class="container">
-
-<header>
-   <h1>Dashboard</h1>
-</header>
-
-<nav>
-  <ul>
-    <li><a ui-sref="george">George</a></li>
-    <li><a ui-sref="lydia">Lydia</a></li>
-    <li><a ui-sref="harry">Harry</a></li>
-  </ul>
-</nav>
-
 <article>
-  <h1>Tracker</h1>
-  <p></p>
-  <p></p>
-<div ng-controller="appController">
-<div ui-view>
+    <div ng-controller="MapCtrl">
+        <div id="map"></div>
+          <nav>
+        <div id="repeat" ng-repeat="marker in markers | orderBy : 'title'">
+             <a id="country_container" href="#" ng-click="openInfoWindow($event, marker)">
+             <label id="names" >{{marker.title}}</label></a></br>
 
-</div>
-</div>
+        </div></br>
+        <div ng-repeat="sweep in harrySweeper">
+                        <h4>{{ sweep.name }} Stats</h4>
+                        <p>Water Level: <progress max="100" value="{{ sweep.waterLevel }}"></progress> {{sweep.waterLevel}}%</p>
+                        <p>Battery Level: <progress max="100" value="{{ sweep.batteryLevel }}"></progress> {{sweep.batteryLevel}}%</p>
 
-
+                    </div></nav>
+    </div>
 </article>
-
-<footer>Dash</footer>
-
-</div>
-<!--<script>
-var app = angular.module('sweepApp', []);
-app.controller('harryCtrl', function($scope) {
-
-  $scope.waterLevel = 100;
-  $scope.batteryLevel = 40;
-  $scope.brushesDown = true;
-  $scope.brushesInfo;
-  $scope.SystemFaultCheckOk = true;
-  $scope.check ="click system check...";
-
-  $scope.systemCheck = function(){
-    if($scope.waterLevel > 10 && $scope.batteryLevel > 10 && $scope.SystemFaultCheckOk == true) {
-      $scope.check = "All systems OK";
-    }else{
-      $scope.check = "Check Levels!";
-    }
-  };
-
-  $scope.brushes = function(){
-    if($scope.brushesDown == true){
-      $scope.brushesInfo = "Brushes are down and working";
-    }else{
-      $scope.brushesInfo = "Brushes are up no work taking place";
-    }
-    return $scope.brushesInfo;
-  };
-
-
-});
-</script>-->
+  </div>
+    <footer>Information</footer>
 </body>
 </html>
