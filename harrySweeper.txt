@@ -1,9 +1,0 @@
-[
-  {
-    "name" : "Harry",
-    "waterLevel" : 100,
-    "batteryLevel" : 40,
-    "brushesDown" : true,
-    "SystemFaultCheckOk" : true
-  }
-]
